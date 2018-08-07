@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 20
+          batch_versioned_data: true
+        order_inserts: true
+        order_updates: true
+  datasource:
+    url: jdbc:postgresql://192.168.197.4:5432/training
+    username: postgres
+    password: splus1
+  
+
+api:
+  airkorea:
+    base-url: http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc
+    service-key: '%2F4jDbsxxTfjYR%2FekxJLQlQgQZWIs%2Bz6D%2Bp08GtH5ybpl3KP%2BSM7D4ZrCrpFA6TuiifcqK%2BJQEL56arg2thmjLQ%3D%3D'
+    ctprvn-mesure-sido:
+      url-path: /getCtprvnMesureSidoLIst
+      sido-names: 서울,부산,대구,인천,광주,대전,울산,경기,강원,충북,충남,전북,전남,경북,경남,제주,세종
+      search-condition: HOUR
+      num-of-rows: 10000
+      return-type: json
