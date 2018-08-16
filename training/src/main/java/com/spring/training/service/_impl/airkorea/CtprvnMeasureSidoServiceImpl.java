@@ -44,7 +44,7 @@ public class CtprvnMeasureSidoServiceImpl implements CtprvnMeasureSidoService {
 		List<CtprvnMeasureSidoDTO> checkList = arpltnInforInqireSvcAPI.getAirPollutionInfo(sidoNames[0].trim()).getList();
 		
 		boolean isNew = false;
-		final int BREAK_CNT = 5;
+		final int BREAK_CNT = 3;
 		int idx = 0;
 		
 		while (!isNew) {
@@ -59,17 +59,24 @@ public class CtprvnMeasureSidoServiceImpl implements CtprvnMeasureSidoService {
 				LocalDateTime prev = data.getDataTime();
 				LocalDateTime now = StringUtil.parseLocalDateTime(checkList.get(0).getDataTime(), "yyyy-MM-dd HH:mm");
 				
+				
+				System.out.println("IS AFTER : [" + now.isAfter(prev) + "]   prev [" + prev.toString() + "] now [" + now.toString() + "]");
+				
 				if (now.isAfter(prev)) {
 					isNew = true;
 					break;
 				} else {
 					try {
+						System.out.println("Wait 10 minutes....");
+						
 						Thread.sleep(10 * 60 * 1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 						continue;
 					}
 				}
+				
+				System.out.println("CALL COUNT [" + (idx + 1) + "]");
 				
 				if (idx > BREAK_CNT) {
 					break;

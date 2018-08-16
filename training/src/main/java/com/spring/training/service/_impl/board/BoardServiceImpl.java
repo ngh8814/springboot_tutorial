@@ -23,7 +23,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		BoardListDTO obj = new BoardListDTO();
 		obj.setPage(page);
-		obj.setTitle(dto.getTitle());
+		obj.setList(page.getContent());
 		return obj;
 	}
 	

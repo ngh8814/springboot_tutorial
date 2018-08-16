@@ -24,6 +24,11 @@ public class BoardController {
 	
 	private BoardService boardService;
 
+	@GetMapping("")
+	public String index() {
+		return "index";
+	}
+	
 	@GetMapping("/list")
 	public BoardListDTO list(BoardListDTO dto) {
 		return boardService.list(dto);

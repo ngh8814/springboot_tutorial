@@ -32,12 +32,17 @@ public class BoardListDTO {
 	public PageRequest getPage() {
 		
 		int page = 0;
+		int pageSize = 10;
 		
 		if (this.pageno > 0) {
 			page = this.pageno - 1;
 		}
 		
-		return PageRequest.of(page, this.pagesize, new Sort(Direction.DESC, "seq"));
+		if (this.pagesize > 0) {
+			pageSize = this.pagesize;
+		}
+		
+		return PageRequest.of(page, pageSize, new Sort(Direction.DESC, "seq"));
 	}
 	
 	public Specification<Board> getSpecification() {
